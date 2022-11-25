@@ -1,16 +1,14 @@
 import { deleteProductsRequest } from "../api/products.api";
 
-
 export const ProductCard = ({ product }) => {
-    const handleDelete = async (id) => {
-        try{
-            const response = await deleteProductsRequest(id)
-            console.log(response)
-        } catch(error){
-            console.error(error);
-        }
-        
+  const handleDelete = async (id) => {
+    try {
+      const response = await deleteProductsRequest(id);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
     }
+  };
   return (
     <div>
       <h2>{product.title}</h2>
