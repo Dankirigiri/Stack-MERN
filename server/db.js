@@ -1,4 +1,5 @@
 import { createConnection } from 'mysql2/promise'
+import { DATABASE_URL } from './config.js';
 
-export const pool = createConnection('mysql://ahbn41353aqyv1ly746k:pscale_pw_iwa5Uj6xH5dM5KqeMY7WwdkOc5sRlbmAzviuoIGIz@us-east.connect.psdb.cloud/prueba?ssl={"rejectUnauthorized":true}');
+export const pool = createConnection(DATABASE_URL);
 console.log("DB init")

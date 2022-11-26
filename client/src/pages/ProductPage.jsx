@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
-import { getProductsRequest } from "../api/products.api";
+import { useEffect } from "react";
 import { ProductCard } from "../components/ProductCard";
+import {useProducts} from "../context/ProductContext";
 
 export const ProductPage = () => {
-  const [productsl, setProducts] = useState([]);
+  const { productsl, loadProducts } = useProducts();
   useEffect(() => {
-    async function loadProducts() {
-      const response = await getProductsRequest();
-      setProducts(response.data);
-    }
-    loadProducts();
+    loadProducts()
   }, []);
   function productsRendered() {
-    if (productsl.length == 0) return <h1>There's not products here.</h1>;
+    if (productsl.length == 0) return <h1>There're not products here.</h1>;
     return productsl.map((product) => (
       <ProductCard product={product} key={product.id} />
     ));

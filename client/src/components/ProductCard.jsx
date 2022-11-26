@@ -1,21 +1,15 @@
-import { deleteProductsRequest } from "../api/products.api";
+import { useProducts } from "../context/ProductContext";
 
 export const ProductCard = ({ product }) => {
-  const handleDelete = async (id) => {
-    try {
-      const response = await deleteProductsRequest(id);
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { deleteProducts } = useProducts()
+  
   return (
     <div>
       <h2>{product.title}</h2>
       <p>{product.description}</p>
       <span>{product.done == 1 ? "Disponible" : "Sin stock"}</span>
       <span>{product.createdAt}</span>
-      <button onClick={() => handleDelete(product.id)}>Delete</button>
+      <button onClick={() => deleteProducts(product.id)}>Delete</button>
       <button>Edit</button>
     </div>
   );

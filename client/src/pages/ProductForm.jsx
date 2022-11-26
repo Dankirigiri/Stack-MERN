@@ -1,7 +1,8 @@
 import { Form, Formik } from "formik";
-import { createProductsRequest } from "../api/products.api";
+import { useProducts } from "../context/ProductContext";
 
 export const ProductForm = () => {
+  const {createProducts} = useProducts()
   return (
     <div>
       <Formik
@@ -11,13 +12,8 @@ export const ProductForm = () => {
         }}
         onSubmit={async (values, actions) => {
           console.log(values);
-          try {
-            const response = await createProductsRequest(values);
-            console.log(response);
-            actions.resetForm();
-          } catch (error) {
-            console.error(error);
-          }
+          createProducts();
+          actions.resetForm();
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
