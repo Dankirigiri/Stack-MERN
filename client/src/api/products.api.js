@@ -11,5 +11,9 @@ export const deleteProductsRequest = async (id) =>
 export const getProductRequest = async (id) =>
   await axios.get(`http://localhost:4000/products/${id}`);
 
-  export const updateProductRequest = async (id, newValues) =>
+export const updateProductRequest = async (id, newValues) =>
   await axios.put(`http://localhost:4000/products/${id}`, newValues);
+export const toggleProductRequest = async (id, stock) =>
+  await axios.put(`http://localhost:4000/products/${id}`, {
+    done: stock,
+  });

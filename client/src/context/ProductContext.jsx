@@ -5,6 +5,7 @@ import {
   createProductsRequest,
   getProductRequest,
   updateProductRequest,
+  toggleProductRequest,
 } from "../api/products.api";
 
 export const ProductContext = createContext();
@@ -54,6 +55,16 @@ export const ProductContextProvider = ({ children }) => {
       console.error(error);
     }
   };
+  const toggleProductStock = async (id) => {
+    try {
+      const productFound = productsl.find((product) => product.id == id);
+      await toggleProductRequest(id, productFound.done == 0 ? true : false);
+      setProducts(productsl.map(product => product.id == id ? product.done = product.done == 0 ? 1 : 0 : productsl.done));
+      setProducts([... productsl])
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <ProductContext.Provider
       value={{
@@ -62,7 +73,8 @@ export const ProductContextProvider = ({ children }) => {
         deleteProducts,
         createProducts,
         getProduct,
-        updateProduct
+        updateProduct,
+        toggleProductStock,
       }}
     >
       {children}
