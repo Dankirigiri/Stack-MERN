@@ -17,6 +17,7 @@ function App() {
           <Route index element={<ProductPage />}></Route>
           <Route path="/" element={<ProductPage />}></Route>
           <Route path="/productform" element={<ProductForm />}></Route>
+          <Route path="/edit/:id" element={<ProductForm />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </ProductContextProvider>

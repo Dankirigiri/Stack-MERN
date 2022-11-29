@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { ProductCard } from "../components/ProductCard";
-import {useProducts} from "../context/ProductContext";
+import { useProducts } from "../context/ProductContext";
 
 export const ProductPage = () => {
   const { productsl, loadProducts } = useProducts();
   useEffect(() => {
-    loadProducts()
+    loadProducts();
   }, []);
   function productsRendered() {
     if (productsl.length == 0) return <h1>There're not products here.</h1>;

@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
 
 export const ProductCard = ({ product }) => {
-  const { deleteProducts } = useProducts()
-  
+  const { deleteProducts } = useProducts();
+  const navigate = useNavigate();
+
   return (
     <div>
       <h2>{product.title}</h2>
@@ -10,7 +12,7 @@ export const ProductCard = ({ product }) => {
       <span>{product.done == 1 ? "Disponible" : "Sin stock"}</span>
       <span>{product.createdAt}</span>
       <button onClick={() => deleteProducts(product.id)}>Delete</button>
-      <button>Edit</button>
+      <button onClick={() => navigate(`/edit/${product.id}`)}>Edit</button>
     </div>
   );
 };
