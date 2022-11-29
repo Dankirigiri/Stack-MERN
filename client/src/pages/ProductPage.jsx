@@ -15,8 +15,8 @@ export const ProductPage = () => {
   }
   return (
     <div>
-      <h1>Products</h1>
-      {productsRendered()}
+      <h1 className="text5xl text-white text-center">Products</h1>
+      <div className="grid grid-cols-3 gap-2">{productsRendered()}</div>
     </div>
   );
 };

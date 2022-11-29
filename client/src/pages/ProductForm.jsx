@@ -27,49 +27,60 @@ export const ProductForm = () => {
   }, []);
   return (
     <div>
-      <h1>{params.id ? "Edit Product" : "New Product"}</h1>
       <Formik
         initialValues={product}
         enableReinitialize={true}
         onSubmit={async (values, actions) => {
           console.log(values);
           if (values.description != "" && values.title != "") {
-            if(params.id){
+            if (params.id) {
               updateProduct(params.id, values);
-            }else{
-              createProducts();
+            } else {
+              createProducts(values);
             }
             setProducts({
-              title:"",
-              description:"",
-            })
-            return navigate("/");
+              title: "",
+              description: "",
+            });
           } else {
             return alert(
               "You must to type a title or a description! Try it again"
             );
           }
+          return navigate("/");
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>title</label>
+          <Form
+            onSubmit={handleSubmit}
+            className="bg-teal-300 max-w-sm rounded-md p-4"
+          >
+            <h1 className="text-xl font-bold textuppercase text-center">
+              {params.id ? "Edit Product" : "New Product"}
+            </h1>
+            <label className="block">title</label>
             <input
               type="text"
               name="title"
               placeholder="Write a title"
+              className="px-2 py-1 rounded-sm w-full"
               onChange={handleChange}
               value={values.title}
             />
-            <label>description</label>
+            <label className="block">description</label>
             <textarea
               name="description"
               rows="3"
               placeholder="Write a desription"
+              className="px-2 py-1 rounded-sm w-full"
               onChange={handleChange}
               value={values.description}
             ></textarea>
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="block bg-indigo-500 px-2 py-1 text-white w-full rounded-md"
+            >
               {isSubmitting ? "Saving..." : "Save"}
             </button>
           </Form>
